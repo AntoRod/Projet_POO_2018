@@ -11,10 +11,9 @@ public class Vcard {
 	/*	La classe contenant les informations des Vcard à traiter
 	 *	Pour la date de dernière modification: on analyse son format pendant la modification de celle-ci (seulement si besoin de modifier la date)
 	 *
-	 *
 	 *	CREATION DE LA VCARD: FONCTIONNEL
 	 *	EXTRACTION DES DONNEES DU FICHIER DANS LA VCARD: FONCTIONNEL + EN COURS (le reste des cas possible d'informations)
-	 *	TOSTRING MINIMAL NON AUTOMATIQUE: EN COURS
+	 *	TOSTRING MINIMAL NON AUTOMATIQUE: FONCTIONNEL
 	 *	AMELIORER LE TOSTRING EN FONCTION DES ATTRIBUTS DE MANIERE AUTOMATIQUE: WIP
 	 *	SEPARATION DES VCARDS: EN COURS
 	 */
@@ -430,8 +429,8 @@ public class Vcard {
 		}
 		int fin = adress.lastIndexOf(",");
 		adress = adress.substring(0, fin);
-		if(type == "WORK") set_homeAdress(adress);
-		if(type == "HOME") set_workAdress(adress);
+		if(type == "WORK") set_workAdress(adress);
+		if(type == "HOME") set_homeAdress(adress);
 //		System.out.println(adress);
 	}
 	//Méthode permettant d'extraire les labels des adresses
@@ -462,6 +461,7 @@ public class Vcard {
 		set_mail(string);
 //		System.out.println(string);
 	}
+	
 	
 	/*FIN AUTRES METHODES*/
 	

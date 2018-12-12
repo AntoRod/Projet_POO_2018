@@ -6,9 +6,9 @@ import java.util.ArrayList;
 public class Directory_Management {
 	
 	/*
-	 *	CETTE CLASS CONTIENT TOUTES LES METHODES DE GESTION DE FICHIERS (afficher dossier + sous dossiers etc)
-	 *
-	 *
+	 *	CETTE CLASS CONTIENT TOUTES LES METHODES DE GESTION DE FICHIERS
+	 *		- AFFICHAGE DES FICHIERS DE TYPE SPECIFIQUES CONTENUS DANS UN DOSSIER (AVEC OU SANS SOUS DOSSIER)
+	 *		- AFFICHAGE DU CONTENU D'UN FICHIER ?? (d'une liste ??)
 	 *
 	 */
 	
