@@ -12,12 +12,8 @@ public class Directory_Management {
 	 *
 	 */
 	
-	
-	public Directory_Management() {
-		
-	}
 	//Méthode qui permet de lister tout les fichiers d'une liste de format spécifiques dans un dossier spécifique, avec ou sans sous dossier
-	public ArrayList<File> listFileFormats(String[] formats, String directory, Boolean subDirectories) {
+	public static ArrayList<File> listFileFormats(String[] formats, String directory, Boolean subDirectories) {
 		//On fait la liste de tout les dossiers/fichiers présents dans le répertoire
 		File repository = new File(directory);
 //		System.out.println(repository.getAbsolutePath());
