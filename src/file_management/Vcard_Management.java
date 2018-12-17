@@ -1,19 +1,15 @@
 package file_management;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 import datas.*;
 
 public class Vcard_Management {
 
 	/*	CETTE CLASS CONTIENT LES METHODES RELATIVE A LA GESTION DES VCARDS
-	 * 		- CREER UNE VCAR A PARTIR D'UN FICHIER VCF
+	 * 		- CREER UNE VCARD A PARTIR D'UN FICHIER VCF (version 3.0)
 	 * 		- SERIALISER UNE VCARD
-	 * 		- DESERIALISR UNE VCARD
+	 * 		- DESERIALISR UNE VCARD (pour l'interface graphique)
 	 * 		- EXPORTER UNE VCARD:
 	 * 			- EN FORMAT HTML
 	 * 			- EN FORMAT SER (serialiser une Vcard)
@@ -23,9 +19,89 @@ public class Vcard_Management {
 	private Vcard						_vcard;
 	
 	
-	public Vcard_Management(Vcard vcard) {
-		_vcard = vcard;
+	public Vcard_Management() {
+		_vcard = new Vcard();
 	}
+	
+	public Vcard get_vcard() {
+		return _vcard;
+	}
+	
+	public void nullifyVcard() {
+		_vcard = new Vcard();
+	}
+	
+	//Méthode qui permet de sérialiser une Vcard
+	//essayer avec une Vcard vide ?
+	public void serializeVcard(String fileName) {
+		if(_vcard == null) {/*UNE ERREUR*/}
+		//Sinon on serialise la Vcard
+		else {
+			//Si le fichier est bien de type ".ser" (fichier sérialisé)
+			//A TRAITER DANS LA PARTIE ARGUMENT PLUTÔT ??
+			if(fileName.endsWith(".ser")) {
+				try {
+					//On crée notre OutputSteam
+					ObjectOutputStream vcardOutput = new ObjectOutputStream(new FileOutputStream(fileName));
+					//On écrit la Vcard avec la méthode writeObject
+					vcardOutput.writeObject(_vcard);
+					//On oublie pas de fermer le stream
+					vcardOutput.flush();
+					vcardOutput.close();
+				} catch (IOException e) {e.printStackTrace();}
+			}
+			else {/*UNE ERREUR*/}
+		}
+	}
+	
+	//Méthode qui permet de déserialiser une Vcard
+	public void readSerializedVcard(String fileName) {
+		try {
+			//On crée notre inputStream
+			ObjectInputStream inputVcard = new ObjectInputStream(new FileInputStream(fileName));
+			//On remet la Vcard à jour avec les nouvelles informations
+			_vcard = (Vcard) inputVcard.readObject();
+			//On oublie pas de fermer le stream
+			inputVcard.close();
+		} catch (FileNotFoundException e) {e.printStackTrace();}
+			catch (IOException e) {e.printStackTrace();} 
+				catch (ClassNotFoundException e) {e.printStackTrace();}
+	}
+	
+	//Méthode qui permet de convertir les données de la Vcard en un code HTML 5 valide (ne crée pas la page, seulement le code de la Vcard)
+	public String convertVcardToHTMLCode() {
+		
+		String 															HTMLCode = "<div class='vcard'>\n";
+		if(_vcard.get_firstName() != null && _vcard.get_name() != null)	HTMLCode+= "	<span class='fn'>"						+_vcard.get_firstName()+" "+_vcard.get_name()+"</span>\n";
+																		HTMLCode+= "	<span class='n'>\n";
+		if(_vcard.get_firstName() != null)								HTMLCode+= "		<span class='given-name'>"			+_vcard.get_firstName()						+"</span>\n";
+		if(_vcard.get_name() != null)									HTMLCode+= "		<span class='family-name'>"			+_vcard.get_name()							+"</span>\n";
+																		HTMLCode+= "	</span>\n";
+																		//AUTRE SPAN COMPANY
+		if(_vcard.get_company() != null)								HTMLCode+= "	<span class='org'>"						+_vcard.getClass()							+"</span>\n";
+		if(_vcard.get_workPhone() != null)								HTMLCode+= "	<span class=''";
+																		HTMLCode+= "</div>";
+		System.out.println(HTMLCode);
+		
+		return HTMLCode;
+		
+	}
+	/*
+	 Version:
+	Name: OK
+	First Name: OK
+	Home Phone: OK
+	Mail: 
+	Home: 
+	 - Label
+	Company: OK
+	Work Phone:
+	Work Adress:
+	 - Label:
+	Title:
+	Picture:
+	 */
+	
 	
 	//Méthode qui permet d'analyser un fichier pour le convertir en Vcard
 	public void analyzeFile(String fileName) {
