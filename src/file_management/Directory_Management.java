@@ -12,6 +12,7 @@ public class Directory_Management {
 	 *		- AFFICHAGE DES FICHIERS DE TYPE SPECIFIQUES CONTENUS DANS UN DOSSIER (AVEC OU SANS SOUS DOSSIER)
 	 *		- AFFICHAGE DU CONTENU D'UN FICHIER ?? (d'une liste ??)
 	 *
+	 *
 	 */
 	
 	//Méthode qui permet de lister tout les fichiers d'une liste de format spécifiques dans un dossier spécifique, avec ou sans sous dossier

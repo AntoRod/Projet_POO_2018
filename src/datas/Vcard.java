@@ -7,6 +7,7 @@ public class Vcard implements Serializable{
 	/*	La classe contenant les informations des Vcard à traiter
 	 *	Pour la date de dernière modification: on analyse son format pendant la modification de celle-ci (seulement si besoin de modifier la date)
 	 *
+	 *
 	 *	CREATION DE LA VCARD: FONCTIONNEL
 	 *	EXTRACTION DES DONNEES DU FICHIER DANS LA VCARD: FONCTIONNEL + EN COURS (le reste des cas possible d'informations)
 	 *	TOSTRING MINIMAL NON AUTOMATIQUE: FONCTIONNEL
