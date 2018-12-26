@@ -22,7 +22,7 @@ public class Vcalendar {
 	
 	
 	/**
-	 * Initializes a newly created Vcalendar
+	 * Initializes a newly created Vcalendar.
 	 */
 	public Vcalendar() {
 	}
@@ -129,7 +129,7 @@ public class Vcalendar {
 	}
 	/*FIN SETTERS*/
 	/**
-	 * Convert the Vcalendar in a String sequence
+	 * Convert the Vcalendar in a String sequence.
 	 */
 	/*TOSTRING*/
 	public String toString() {

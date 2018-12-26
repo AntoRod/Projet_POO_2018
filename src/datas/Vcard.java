@@ -270,7 +270,7 @@ public class Vcard implements Serializable{
 	}
 	/*FIN SETTERS*/
 	/**
-	 * Convert the Vcard in a String sequence
+	 * Convert the Vcard in a String sequence.
 	 */
 	/*TOSTRING*/
 	public String toString() {

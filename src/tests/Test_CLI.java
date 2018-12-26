@@ -69,7 +69,7 @@ public class Test_CLI {
 		//Sinon on analyse les arguments
 		if(args.length != 0) {
 			
-			//ORDRE: M d t i o h
+			//ORDRE: M d t i o h p
 			//On analyse les arguments
 			for(int i=0;i<args.length;i++) {
 				//Si l'argument est -M: la taille maximale d'affichage des fichiers
@@ -230,8 +230,10 @@ public class Test_CLI {
 					}
 					//Sinon si c'est un iCalendar
 					else if(args[_inputArg].endsWith(".ics")) {
-						//TRAITEMENT ICS
-						
+						//On serialise le fichier
+						_vcalendar_management.serializeVcalendar(args[_outputArg]);
+						//On affiche qu'on a réussi le traitement dans l'invite de commande
+						System.out.println("The Vcalendar has been successfully exported as "+args[_outputArg]);
 					}
 					//Sinon exception BadArgument
 					else throw new BadArgumentException("No file has been imported, cannot export nothing.");
