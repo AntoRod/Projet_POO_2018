@@ -75,11 +75,10 @@ public class Argument_Management {
 				+"			du logiciel.\n\r"
 				+"-o		OUTPIUT: le prochain argument est le fichier de\n\r"
 				+"			sortie du logiciel.\n\r"
-				+"-om		OUTPUT MULTIPLE: les prochains arguments sont les\n\r"
-				+"			fichiers de sortie à générer, plusieurs formats\n\r"
-				+"			peuvent être générés en même temps.\n\r"
 				+"-h		HTML: le prochain argument est le fichier HTML\n\r"
 				+"			de sortie du logiciel.\n\r"
+				+"-p		PAGE: le prochain argument est un fichier HTML 5\n\r"
+				+ "			minimal mais Valide qui sera créé."
 				);
 	}
 		

@@ -1,8 +1,9 @@
 package file_management;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 
 public class Directory_Management {
@@ -24,13 +25,6 @@ public class Directory_Management {
 		ArrayList<File> properFiles = new ArrayList<File>();
 		//Si cette liste est non vide, on l'analyse
 		if(files != null) {
-			//Si la liste des formats est vide, mettre par défaut
-			if(formats == null) {
-				formats = new ArrayList<String>();
-				//Types par défaut: Vcard et Calendar
-				formats.add(".vcf");
-				formats.add(".ics");
-			}
 			for(int i=0;i<files.length;i++) {
 				//Si c'est un fichier, on regarde son extension
 				if(files[i].isFile()) {
@@ -55,6 +49,16 @@ public class Directory_Management {
 		}
 		//On retourne la liste des fichiers correspondant à nos critères
 		return properFiles;
+	}
+	//Méthode qui permet de convertir un String HTML valide en un fichier HTML 5 complet et valide (strict minimum) à partir du nom du fichier et du code généré sous forme de String
+	public static void convertStringToHTMLFile(String fileName, String HTMLPage) {
+		try {
+			FileWriter HTMLWriter = new FileWriter(new File(fileName));
+			HTMLWriter.append(HTMLPage);
+			
+			HTMLWriter.flush();
+			HTMLWriter.close();
+		} catch (IOException e) {e.printStackTrace();}
 	}
 	
 	
