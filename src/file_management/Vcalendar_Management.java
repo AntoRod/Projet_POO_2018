@@ -29,11 +29,16 @@ public class Vcalendar_Management {
 
 	/**
 	 * Initializes a newly created Vcalendar_Management
-	 * @param fileName The name of the file from which we extract datas to convert in Vcard
+	 * @param fileName The name of the file from which we extract datas to convert in Vcalendar
 	 */
 	public Vcalendar_Management(String fileName) {
 		_vcalendar = new Vcalendar();
 		analyzeFile(fileName);
+		try {
+			serializeVcalendar("truc.ser");
+		} catch (NoArgumentException | BadArgumentException e) {
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * 
@@ -45,57 +50,52 @@ public class Vcalendar_Management {
 	/**
 	 * Reset the Vcalendar to a newly created one.
 	 */
-	public void nullifyVcard() {
+	public void nullifyVcalendar() {
 		_vcalendar = new Vcalendar();
 	}
 
 	// Méthode qui permet de sérialiser un Vcalendar
-	// essayer avec une Vcard vide ?
+	// essayer avec une Vcalendar vide ?
 	/**
 	 * 
 	 * @param fileName The file in which we serialize the Vcalendar.
-	 * @throws NoArgumentException The exception we throw if the Vcard is empty.
+	 * @throws NoArgumentException The exception we throw if the Vcalendar is empty.
 	 * @throws BadArgumentException The exception we throw if the file is nt a .ser file.
 	 */
-	public void serializeVcalendar(String fileName) throws NoArgumentException, BadArgumentException {
-		if (_vcalendar == null) {
-			throw new NoArgumentException("Vcard is empty, can't serialize nothing.");
-		}
-		// Sinon on serialise la Vcard
+	public void serializeVcalendar(String fileName) throws NoArgumentException, BadArgumentException{
+		if(_vcalendar == null) {throw new NoArgumentException("Vcalendar is empty, can't serialize nothing.");}
+		//Sinon on serialise la Vcalendar
 		else {
-			// Si le fichier est bien de type ".ser" (fichier sérialisé)
-			if (fileName.endsWith(".ser")) {
+			//Si le fichier est bien de type ".ser" (fichier sérialisé)
+			if(fileName.endsWith(".ser")) {
 				try {
-					// On crée notre OutputSteam
+					//On crée notre OutputSteam
 					ObjectOutputStream vcalendarOutput = new ObjectOutputStream(new FileOutputStream(fileName));
-					// On écrit la Vcard avec la méthode writeObject
+					//On écrit la Vcalendar avec la méthode writeObject
 					vcalendarOutput.writeObject(_vcalendar);
-					// On oublie pas de fermer le stream
+					//On oublie pas de fermer le stream
 					vcalendarOutput.flush();
 					vcalendarOutput.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				} catch (IOException e) {e.printStackTrace();}
 			}
-			// On lance l'exception BadArgument
+			//On lance l'exception BadArgument
 			else {
-				// On repère l'exception pour l'afficher dans le message d'erreur
+				//On repère l'exception pour l'afficher dans le message d'erreur
 				String[] split = fileName.split("\\.");
-				String extension = split[split.length - 1];
-				throw new BadArgumentException("Can't serialize Vcard in a ." + extension + " File.\n");
-			}
+				String extension = split[split.length-1];
+				throw new BadArgumentException("Can't serialize Vcalendar in a ."+extension+" File.\n");}
 		}
 	}
 	/**
 	 * 
-	 * @param fileName The name of the file from which we take the serialized Vcard.
+	 * @param fileName The name of the file from which we take the serialized Vcalendar.
 	 */
 	//Méthode qui permet de déserialiser un Vcalendar
-	public void readSerializedVcard(String fileName) {
+	public void readSerializedVcalendar(String fileName) {
 		try {
 			//On crée notre inputStream
 			ObjectInputStream inputVcalendar = new ObjectInputStream(new FileInputStream(fileName));
-			//On remet la Vcard à jour avec les nouvelles informations
+			//On remet la Vcalendar à jour avec les nouvelles informations
 			_vcalendar = (Vcalendar) inputVcalendar.readObject();
 			//On oublie pas de fermer le stream
 			inputVcalendar.close();

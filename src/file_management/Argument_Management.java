@@ -1,6 +1,5 @@
 package file_management;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -21,18 +20,17 @@ public class Argument_Management {
 	//Méthode qui affiche le nom des fichiers contenus dans le dossier voulu, les types de fichier à afficher sont passés en paramètres (si null, affichage des types par défaut)
 	public static void displayElementsInDirectory(String directory, ArrayList<String> typeOfFiles, int size) {
 		//On crée une ArrayList pour contenir tout les fichiers (ne pas les afficher directement au cas ou il y en a trop) 
-		ArrayList<File> test = new ArrayList<File>();
+		ArrayList<String> test = new ArrayList<String>();
 		//On initialise le compteur;
 		int compteur = 0;
 		//On initialise la variable d'arrêt
 		Boolean stop = false;
 		//On récupère la liste des fichiers de ces formats ci
 		test = Directory_Management.listFileFormats(typeOfFiles, directory, true);
-		
-		Iterator<File> iterator = test.iterator();
+		Iterator<String> iterator = test.iterator();
 		while(iterator.hasNext() && !stop) {
 			//On récupère le nom du fichier et on l'affiche
-			String fileName = iterator.next().getName();
+			String fileName = iterator.next();
 			System.out.println(fileName);
 			//On incrémente le compteur
 			compteur++;

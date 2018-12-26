@@ -169,7 +169,7 @@ public class Test_CLI {
 				//AUCUNE EXCEPTION DANS CE CAS LA
 				if(_errorType.contains("NODISPLAY")) {
 					System.out.println("No display argument, displaying default location.");
-					Argument_Management.displayElementsInDirectory("./", _typeOfFiles, _maximum);
+					_isDisplaySet = true;
 				}
 				//Si on a une erreur d'input, on affiche le message d'erreur, on ne peut pas afficher le contenu d'input dans ce cas ci (pas de cas par défaut)
 				if(_errorType.contains("NOINPUT")) throw new NoArgumentException("No input argument, can't import a proper file.");
@@ -188,7 +188,7 @@ public class Test_CLI {
 			if(_isDisplaySet) {
 				//Si le type de display n'est pas défini, on en défini un par défaut, sinon on laisse les types comme ils sont
 				//Si le type choisi est invalide (mauvais argument) rien ne sera affiché, pas besoin de traiter ce cas d'erreur
-				if(!_isTypeOfDisplaySet) {
+				if(_isTypeOfDisplaySet == null) {
 					//Si la liste des formats est vide, mettre par défaut
 					_typeOfFiles = new ArrayList<String>();
 					//Types par défaut: Vcard et Calendar
@@ -196,7 +196,10 @@ public class Test_CLI {
 					_typeOfFiles.add(".ics");
 				}
 				//Dans tout les cas, on affiche en fonction de _typeOfFiles passé en argument
-				Argument_Management.displayElementsInDirectory(args[_displayArg], _typeOfFiles, _maximum);
+				//Si le displayArgument est différent de 0, on affiche en fonction de l'argument
+				if(_displayArg != 0) Argument_Management.displayElementsInDirectory(args[_displayArg], _typeOfFiles, _maximum);
+				//Sinon c'est que le mode display a été activé dans la partie erreur, et aucun argument n'est donc spécifié (valeur par defaut)
+				else Argument_Management.displayElementsInDirectory("./", _typeOfFiles, _maximum);
 			}
 			
 			//Si le mode input est défini, on crée la Vcard/Le calendrier(WIP) à partir du fichier d'input

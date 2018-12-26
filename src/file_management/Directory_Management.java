@@ -23,12 +23,12 @@ public class Directory_Management {
 	 * @return Return an ArrayList of the files we want to display.
 	 */
 	//Méthode qui permet de lister tout les fichiers d'une liste de format spécifiques dans un dossier spécifique, avec ou sans sous dossier
-	public static ArrayList<File> listFileFormats(ArrayList<String> formats, String directory, Boolean subDirectories) {
+	public static ArrayList<String> listFileFormats(ArrayList<String> formats, String directory, Boolean subDirectories) {
 		//On fait la liste de tout les dossiers/fichiers présents dans le répertoire
 		File repository = new File(directory);
 		File[] files = repository.listFiles();
 		
-		ArrayList<File> properFiles = new ArrayList<File>();
+		ArrayList<String> properFiles = new ArrayList<String>();
 		//Si cette liste est non vide, on l'analyse
 		if(files != null) {
 			for(int i=0;i<files.length;i++) {
@@ -40,14 +40,18 @@ public class Directory_Management {
 						//On analyse les formats et si c'est un des formats demandés, on l'ajoute à la liste
 //						System.out.println(files[i].getName());
 						if(files[i].getName().endsWith(format)) {
-							properFiles.add(files[i]);
+							try {
+								properFiles.add(files[i].getCanonicalPath());
+							} catch (IOException e) {e.printStackTrace();}
+								
+
 						}
 					}
 				}
 				//Sinon si c'est un dossier, l'analyser si l'option est activée
 				else if(files[i].isDirectory()) {
 					if(subDirectories) {
-						ArrayList<File> subDirList = listFileFormats(formats, files[i].getAbsolutePath(), subDirectories);
+						ArrayList<String> subDirList = listFileFormats(formats, files[i].getAbsolutePath(), subDirectories);
 						properFiles.addAll(subDirList);
 					}
 				}
