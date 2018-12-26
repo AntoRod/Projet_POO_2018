@@ -27,21 +27,36 @@ public class Vcalendar_Management {
 	// Le vcalendar à traiter
 	private Vcalendar _vcalendar;
 
+	/**
+	 * Initializes a newly created Vcalendar_Management
+	 * @param fileName The name of the file from which we extract datas to convert in Vcard
+	 */
 	public Vcalendar_Management(String fileName) {
 		_vcalendar = new Vcalendar();
 		analyzeFile(fileName);
 	}
-
+	/**
+	 * 
+	 * @return _vcalendar The Vcalendar we treat here.
+	 */
 	public Vcalendar get_vcalendar() {
 		return _vcalendar;
 	}
-
+	/**
+	 * Reset the Vcalendar to a newly created one.
+	 */
 	public void nullifyVcard() {
 		_vcalendar = new Vcalendar();
 	}
 
 	// Méthode qui permet de sérialiser un Vcalendar
 	// essayer avec une Vcard vide ?
+	/**
+	 * 
+	 * @param fileName The file in which we serialize the Vcalendar.
+	 * @throws NoArgumentException The exception we throw if the Vcard is empty.
+	 * @throws BadArgumentException The exception we throw if the file is nt a .ser file.
+	 */
 	public void serializeVcalendar(String fileName) throws NoArgumentException, BadArgumentException {
 		if (_vcalendar == null) {
 			throw new NoArgumentException("Vcard is empty, can't serialize nothing.");
@@ -71,7 +86,10 @@ public class Vcalendar_Management {
 			}
 		}
 	}
-	
+	/**
+	 * 
+	 * @param fileName The name of the file from which we take the serialized Vcard.
+	 */
 	//Méthode qui permet de déserialiser un Vcalendar
 	public void readSerializedVcard(String fileName) {
 		try {
@@ -85,7 +103,10 @@ public class Vcalendar_Management {
 			catch (IOException e) {e.printStackTrace();} 
 				catch (ClassNotFoundException e) {e.printStackTrace();}
 	}
-	
+	/**
+	 * 
+	 * @return Return a valide HTML 5 Code of the Vcalendar datas (only the data, not the page core)
+	 */
 	//Méthode qui permet de convertir les données du Vcalendar en un code HTML 5 valide (ne crée pas la page, seulement le code du Vcalendar)
 	public String convertVcalendarToHTMLCode() {
 		String 										HTMLCode = "";
@@ -100,6 +121,10 @@ public class Vcalendar_Management {
 												HTMLCode += "</div>\n";;
 		return HTMLCode;
 	}
+	/**
+	 * 
+	 * @return Return a valide HTML 5 Page of the Vcalendar.
+	 */
 	//Methode qui permet de convertir les données les données du Vcalendar en une page HTML 5 valide (ne crée pas la page, seulement le code de la plage complète)
 	public String convertVcalendarToHTMLPage() {
 		String 								HTMLPage = "";
@@ -131,12 +156,18 @@ public class Vcalendar_Management {
 		return string;
 	}
 	
-	
+	/**
+	 * 
+	 * @param fileName The name of the file we want to analyze and take datas from, to convert into Vcalendar.
+	 */
 	// Méthode qui permet d'analyser un fichier pour le convertir en Vcalendar
 	public void analyzeFile(String fileName) {
 		analyzeFile(new File(fileName));
 	}
-
+	/**
+	 * 
+	 * @param file The file we want to analyze and take datas from, to convert into Vcalendar.
+	 */
 	public void analyzeFile(File file) {
 		try {
 			// On importe le fichier dans un Reader et on traite l'exception si il n'existe

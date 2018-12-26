@@ -15,7 +15,13 @@ public class Directory_Management {
 	 *
 	 *
 	 */
-	
+	/**
+	 * 
+	 * @param formats The formats we want to display.
+	 * @param directory The directory we want to analyze.
+	 * @param subDirectories If we want to analyze the subDirectories or not.
+	 * @return Return an ArrayList of the files we want to display.
+	 */
 	//Méthode qui permet de lister tout les fichiers d'une liste de format spécifiques dans un dossier spécifique, avec ou sans sous dossier
 	public static ArrayList<File> listFileFormats(ArrayList<String> formats, String directory, Boolean subDirectories) {
 		//On fait la liste de tout les dossiers/fichiers présents dans le répertoire
@@ -50,6 +56,11 @@ public class Directory_Management {
 		//On retourne la liste des fichiers correspondant à nos critères
 		return properFiles;
 	}
+	/**
+	 * 
+	 * @param fileName The file in which we write the HTML Page
+	 * @param HTMLPage The String that contains all the HTML Code we want to write.
+	 */
 	//Méthode qui permet de convertir un String HTML valide en un fichier HTML 5 complet et valide (strict minimum) à partir du nom du fichier et du code généré sous forme de String
 	public static void convertStringToHTMLFile(String fileName, String HTMLPage) {
 		try {

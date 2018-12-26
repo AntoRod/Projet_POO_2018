@@ -20,54 +20,58 @@ public class Vcalendar {
 												//La description du Vevent
 	private String								_description;
 	
+	
+	/**
+	 * Initializes a newly created Vcalendar
+	 */
 	public Vcalendar() {
 	}
 	
 	/*GETTERS*/
 	/**
-	 * @return the _version
+	 * @return The version of the Vcalendar
 	 */
 	public String get_version() {
 		return _version;
 	}
 	/**
-	 * @return the _dateBegin
+	 * @return The time at which the Event starts.
 	 */
 	public String get_dateBegin() {
 		return _dateBegin;
 	}
 	/**
-	 * @return the _dateEnd
+	 * @return The time at which the Event ends.
 	 */
 	public String get_dateEnd() {
 		return _dateEnd;
 	}
 	/**
-	 * @return the _summary
+	 * @return The summary of the Event
 	 */
 	public String get_summary() {
 		return _summary;
 	}
 	/**
-	 * @return the _categories
+	 * @return The categories of the Event.
 	 */
 	public String get_categories() {
 		return _categories;
 	}
 	/**
-	 * @return the _Transparency
+	 * @return The transparency of the Event.
 	 */
 	public String get_transparency() {
 		return _transparency;
 	}
 	/**
-	 * @return the _location
+	 * @return The location of the Event.
 	 */
 	public String get_location() {
 		return _location;
 	}
 	/**
-	 * @return the _description
+	 * @return The description of the Event.
 	 */
 	public String get_description() {
 		return _description;
@@ -76,55 +80,57 @@ public class Vcalendar {
 	
 	/*SETTERS*/
 	/**
-	 * @param _version the _version to set
+	 * @param _version Set the version of the Vcalendar.
 	 */
 	public void set_version(String _version) {
 		this._version = _version;
 	}
 	/**
-	 * @param _dateBegin the _dateBegin to set
+	 * @param _dateBegin Set the time at which the Event starts.
 	 */
 	public void set_dateBegin(String _dateBegin) {
 		this._dateBegin = _dateBegin;
 	}
 	/**
-	 * @param _dateEnd the _dateEnd to set
+	 * @param _dateEnd Set the time at which the Event ends.
 	 */
 	public void set_dateEnd(String _dateEnd) {
 		this._dateEnd = _dateEnd;
 	}
 	/**
-	 * @param _summary the _summary to set
+	 * @param _summary Set the summary of the Event.
 	 */
 	public void set_summary(String _summary) {
 		this._summary = _summary;
 	}
 	/**
-	 * @param _categories the _categories to set
+	 * @param _categories Set the categories of the Event.
 	 */
 	public void set_categories(String _categories) {
 		this._categories = _categories;
 	}
 	/**
-	 * @param _Transparency the _Transparency to set
+	 * @param _Transparency Set the transparency of the Event.
 	 */
 	public void set_transparency(String _Transparency) {
 		this._transparency = _Transparency;
 	}
 	/**
-	 * @param _location the _location to set
+	 * @param _location Set the location of the Event.
 	 */
 	public void set_location(String _location) {
 		this._location = _location;
 	}
 	/**
-	 * @param _description the _description to set
+	 * @param _description Set the description of the Event.
 	 */
 	public void set_description(String _description) {
 		this._description = _description;
 	}
 	/*FIN SETTERS*/
-	
+	/**
+	 * Convert the Vcalendar in a String sequence
+	 */
 	/*TOSTRING*/
 	public String toString() {
 		String 									string = "";

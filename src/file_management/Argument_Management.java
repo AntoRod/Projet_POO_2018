@@ -12,11 +12,14 @@ public class Argument_Management {
 	 *
 	 */
 	
-	
-	
-	
+	/**
+	 * 
+	 * @param directory The directory from which we display the elements.
+	 * @param typeOfFiles The type of Elements we want to display.
+	 * @param size The maximum number of Files to display.
+	 */
 	//Méthode qui affiche le nom des fichiers contenus dans le dossier voulu, les types de fichier à afficher sont passés en paramètres (si null, affichage des types par défaut)
-	public static void displayVcardsInDirectory(String directory, ArrayList<String> typeOfFiles, int size) {
+	public static void displayElementsInDirectory(String directory, ArrayList<String> typeOfFiles, int size) {
 		//On crée une ArrayList pour contenir tout les fichiers (ne pas les afficher directement au cas ou il y en a trop) 
 		ArrayList<File> test = new ArrayList<File>();
 		//On initialise le compteur;
@@ -39,7 +42,11 @@ public class Argument_Management {
 		}
 		
 	}
-		
+	/**
+	 * 
+	 * @param args The arguments we want to analyze
+	 * @param argIndex The specified index of the argument we want to analyze
+	 * @return Return the validity of the argument we analyzed	 */
 	//Méthode qui permet de savoir si l'argument suivant est un "-paramètre" ou un argument valide (exemple un fichier de sortie, un dossier à analyser etc...)
 	public static Boolean isValidArgument(String[] args, int argIndex) {		
 		//On initialise le compteur d'argument valides suivant (on ne vérifie pas le type d'argument précis, seulement si c'est un paramètre ou non)
@@ -60,7 +67,9 @@ public class Argument_Management {
 		}
 	}
 
-	
+	/**
+	 * Display the Argument Manual to help you figure out how to use the jar file
+	 */
 	//Affichage du mode d'emploi du logiciel
 	public static void displayManual() {
 		System.out.println

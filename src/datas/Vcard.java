@@ -45,35 +45,36 @@ public class Vcard implements Serializable{
 												//La date de dernière modification de la Vcard
 	private String								_lastUpdated;
 	
-	
+	/**
+	 * Initializes a newly created Vcard
+	 */
 	public Vcard() {
 		
 	}
 
 	/*GETTERS*/
 	/**
-	 * @return the _name
+	 * @return The name of the Vcard owner.
 	 */
 	public String get_name() {
 		return _name;
 	}
 	/**
-	 * @return the _version
+	 * @return The version of the Vcard.
 	 */
 	public String get_version() {
 		return _version;
 	}
 
 	/**
-	 * @return the _firstName
+	 * @return The first name of the Vcard owner.
 	 */
 	public String get_firstName() {
 		return _firstName;
 	}
 
-
 	/**
-	 * @return the _homePhone
+	 * @return The Phone of the Vcard owner.
 	 */
 	public String get_homePhone() {
 		return _homePhone;
@@ -81,15 +82,14 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @return the _workPhone
+	 * @return The work phone of the Vcard owner.
 	 */
 	public String get_workPhone() {
 		return _workPhone;
 	}
 
-
 	/**
-	 * @return the _title
+	 * @return The title of the owner in the company.
 	 */
 	public String get_title() {
 		return _title;
@@ -97,7 +97,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @return the _picture
+	 * @return The URL to the picture of the Vcard owner.
 	 */
 	public String get_picture() {
 		return _picture;
@@ -105,7 +105,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @return the _company
+	 * @return The name of the company in which the Vcard owner is.
 	 */
 	public String get_company() {
 		return _company;
@@ -113,7 +113,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @return the _workAdress
+	 * @return The adress of the company in which the Vcard owner is.
 	 */
 	public String get_workAdress() {
 		return _workAdress;
@@ -121,7 +121,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @return the _homeAdress
+	 * @return The home adress of the Vcard owner.
 	 */
 	public String get_homeAdress() {
 		return _homeAdress;
@@ -129,7 +129,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @return the _labelWorkAdress
+	 * @return The label of the home adress of the Vcard owner.
 	 */
 	public String get_labelWorkAdress() {
 		return _labelWorkAdress;
@@ -137,7 +137,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @return the _labelHomeAdress
+	 * @return The label of the company in which the Vcard owner is.
 	 */
 	public String get_labelHomeAdress() {
 		return _labelHomeAdress;
@@ -145,7 +145,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @return the _mail
+	 * @return The mail of the Vcard owner.
 	 */
 	public String get_mail() {
 		return _mail;
@@ -153,7 +153,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @return the _lastUpdated
+	 * @return The last time the Vcard has been updated.
 	 */
 	public String get_lastUpdated() {
 		return _lastUpdated;
@@ -161,13 +161,13 @@ public class Vcard implements Serializable{
 	/*FIN GETTERS*/
 	/*SETTERS*/
 	/**
-	 * @param _version the _version to set
+	 * @param _version Set the version on the Vcard.
 	 */
 	public void set_version(String _version) {
 		this._version = _version;
 	}
 	/**
-	 * @param _name the _name to set
+	 * @param _name Set the name of the Vcard owner.
 	 */
 	public void set_name(String _name) {
 		this._name = _name;
@@ -175,7 +175,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @param _firstName the _firstName to set
+	 * @param _firstName Set the first name of the Vcard owner.
 	 */
 	public void set_firstName(String _firstName) {
 		this._firstName = _firstName;
@@ -183,7 +183,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @param _homePhone the _homePhone to set
+	 * @param _homePhone Set the home phone of the Vcard owner.
 	 */
 	public void set_homePhone(String _homePhone) {
 		this._homePhone = _homePhone;
@@ -191,7 +191,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @param _workPhone the _workPhone to set
+	 * @param _workPhone Set the work phone of the Vcard owner.
 	 */
 	public void set_workPhone(String _workPhone) {
 		this._workPhone = _workPhone;
@@ -199,7 +199,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @param _title the _title to set
+	 * @param _title Set the company title of the Vcard owner.
 	 */
 	public void set_title(String _title) {
 		this._title = _title;
@@ -207,7 +207,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @param _picture the _picture to set
+	 * @param _picture Set the URL link of the picture of the Vcard owner
 	 */
 	public void set_picture(String _picture) {
 		this._picture = _picture;
@@ -215,7 +215,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @param _company the _company to set
+	 * @param _company Set the company adress of the Vcard owner.
 	 */
 	public void set_company(String _company) {
 		this._company = _company;
@@ -223,7 +223,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @param _workAdress the _workAdress to set
+	 * @param _workAdress Set the work adress of the Vcard owner.
 	 */
 	public void set_workAdress(String _workAdress) {
 		this._workAdress = _workAdress;
@@ -231,7 +231,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @param _homeAdress the _homeAdress to set
+	 * @param _homeAdress Set the home adress of the Vcard owner.
 	 */
 	public void set_homeAdress(String _homeAdress) {
 		this._homeAdress = _homeAdress;
@@ -239,7 +239,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @param _labelWorkAdress the _labelWorkAdress to set
+	 * @param _labelWorkAdress Set the label of the work adress of the Vcard owner.
 	 */
 	public void set_labelWorkAdress(String _labelWorkAdress) {
 		this._labelWorkAdress = _labelWorkAdress;
@@ -247,7 +247,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @param _labelHomeAdress the _labelHomeAdress to set
+	 * @param _labelHomeAdress Set the label of the home adress of the Vcard owner.
 	 */
 	public void set_labelHomeAdress(String _labelHomeAdress) {
 		this._labelHomeAdress = _labelHomeAdress;
@@ -255,7 +255,7 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @param _mail the _mail to set
+	 * @param _mail Set the mail of the Vcard owner.
 	 */
 	public void set_mail(String _mail) {
 		this._mail = _mail;
@@ -263,13 +263,15 @@ public class Vcard implements Serializable{
 
 
 	/**
-	 * @param _lastUpdated the _lastUpdated to set
+	 * @param _lastUpdated Update the time at which the Vcard has been updated.
 	 */
 	public void set_lastUpdated(String _lastUpdated) {
 		this._lastUpdated = _lastUpdated;
 	}
 	/*FIN SETTERS*/
-
+	/**
+	 * Convert the Vcard in a String sequence
+	 */
 	/*TOSTRING*/
 	public String toString() {
 		

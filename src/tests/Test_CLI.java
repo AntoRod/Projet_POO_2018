@@ -169,7 +169,7 @@ public class Test_CLI {
 				//AUCUNE EXCEPTION DANS CE CAS LA
 				if(_errorType.contains("NODISPLAY")) {
 					System.out.println("No display argument, displaying default location.");
-					Argument_Management.displayVcardsInDirectory("./", _typeOfFiles, _maximum);
+					Argument_Management.displayElementsInDirectory("./", _typeOfFiles, _maximum);
 				}
 				//Si on a une erreur d'input, on affiche le message d'erreur, on ne peut pas afficher le contenu d'input dans ce cas ci (pas de cas par défaut)
 				if(_errorType.contains("NOINPUT")) throw new NoArgumentException("No input argument, can't import a proper file.");
@@ -196,7 +196,7 @@ public class Test_CLI {
 					_typeOfFiles.add(".ics");
 				}
 				//Dans tout les cas, on affiche en fonction de _typeOfFiles passé en argument
-				Argument_Management.displayVcardsInDirectory(args[_displayArg], _typeOfFiles, _maximum);
+				Argument_Management.displayElementsInDirectory(args[_displayArg], _typeOfFiles, _maximum);
 			}
 			
 			//Si le mode input est défini, on crée la Vcard/Le calendrier(WIP) à partir du fichier d'input
