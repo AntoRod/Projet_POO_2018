@@ -1,8 +1,11 @@
 package file_management;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -76,6 +79,34 @@ public class Directory_Management {
 		} catch (IOException e) {e.printStackTrace();}
 	}
 	
-	
+	//Méthode qui permet de désérialiser un objet générique
+	public static Object readSerialisedObject (String fileName) {
+		Object object = null;
+		try {
+			//On crée notre inputStream
+			ObjectInputStream inputVcard = new ObjectInputStream(new FileInputStream(fileName));
+			//On remet la Vcard à jour avec les nouvelles informations
+			object = inputVcard.readObject();
+			//On oublie pas de fermer le stream
+			inputVcard.close();
+		} catch (FileNotFoundException e) {e.printStackTrace();}
+			catch (IOException e) {e.printStackTrace();} 
+				catch (ClassNotFoundException e) {e.printStackTrace();}
+		return object;
+	}
+	/**
+	 * 
+	 * @param fileName The name of the File we want to extract the extension from.
+	 */
+	//Méthode qui retourne l'extension du fichier séléctionné
+	public static String getFileExtension(String fileName) {
+		return getFileExtension(new File(fileName));
+	}
+	public static String getFileExtension(File file) {
+		//On sépare le fichier pour obtenir son extension
+		String[] split = file.getName().split("\\.");
+		//On retourne le dernier élément pour obtenir l'extension
+		return split[split.length-1];
+	}
 
 }

@@ -3,6 +3,7 @@ package file_management;
 import java.io.*;
 import datas.*;
 import exceptions.*;
+import gui.Settings;
 
 public class Vcard_Management {
 
@@ -30,8 +31,16 @@ public class Vcard_Management {
 	 * @param fileName The name of the file from which we extract datas to convert in Vcard
 	 */
 	public Vcard_Management(String fileName) {
-		_vcard = new Vcard();
-		analyzeFile(fileName);
+		//Si on lit un fichier sérialisé, on le désérialise
+		if(fileName.endsWith(".ser")) this.readSerializedVcard(fileName);
+		else {
+			//Sinon on le traite comme un fichier classique
+			_vcard = new Vcard();
+			analyzeFile(fileName);
+		}
+		//SI GUI, OBLIGATOIRE !
+		Settings.setVcardNameMap();
+
 	}
 	
 	/**
@@ -172,8 +181,6 @@ public class Vcard_Management {
 				//On lit le fichier ligne par ligne pour traiter chaque informations
 				String cardLine = cardReader.readLine();
 				while(cardLine != null) {
-					//On extrait la version de la ligne
-					if(cardLine.startsWith("VERSION")) extractVersion(cardLine);
 					//On extrait le nom et le prénom de la ligne
 					if(cardLine.startsWith("N")) extractName(cardLine);
 					//On compare le nom et le prénom avec le nom entier pour vérifier que celui-ci soit le bon
@@ -194,16 +201,8 @@ public class Vcard_Management {
 						if(cardLine.contains("WORK")) extractAdress(cardLine, "WORK");
 						if(cardLine.contains("HOME")) extractAdress(cardLine, "HOME");
 					}
-					//On extrait les labels des lignes
-					if(cardLine.startsWith("LABEL")) {
-						if(cardLine.contains("WORK")) extractLabel(cardLine, "WORK");
-						if(cardLine.contains("HOME")) extractLabel(cardLine, "HOME");
-					}
 					//On extrait le mail de la ligne
 					if(cardLine.startsWith("EMAIL")) extractMail(cardLine);
-					//On extrait le REV de la ligne
-					if(cardLine.startsWith("REV")) extractLastModified(cardLine);
-					
 					cardLine = cardReader.readLine();
 					
 				}
@@ -213,14 +212,6 @@ public class Vcard_Management {
 		} catch (FileNotFoundException e) {System.out.println(e.getMessage());}
 		catch (IOException e) {e.printStackTrace();}
 		
-	}
-	//Méthode permettant d'extraire la version du fichier
-	private void extractVersion(String string) {
-		//On enlève "VERSION:" de la ligne
-		string = string.replace("VERSION:", "");
-		//On set la version
-		_vcard.set_version(string);
-//		System.out.println(string);
 	}
 	//Méthode permettant d'extraire le nom et le prénom du fichier
 	private void extractName(String string) {
@@ -307,20 +298,7 @@ public class Vcard_Management {
 		}
 //		System.out.println(adress);
 	}
-	//Méthode permettant d'extraire les labels des adresses
-	private void extractLabel(String string, String type) {
-		//On sépare les informations à l'aide de la méthode split
-		//La ligne ne contenant qu'un seul ":", juste avant le label, on peut les séparer par rapport à ça pour l'obtenir
-		String[] split = string.split(":");
-		String label = split[1];
-		//On modifie légèrement le label pour le rendre plus facile à lire
-		label = label.replace("\\n", ",");
-		label = label.replace("\\", "");
-		
-		if(type =="WORK") _vcard.set_labelWorkAdress(label);
-		if(type =="HOME") _vcard.set_labelHomeAdress(label);
-//		System.out.println(label);
-	}
+
 	//Méthode permettant d'extraire l'émail de la personne
 	private void extractMail(String string) {
 		//On enlève "EMAIL:" de la ligne
@@ -328,13 +306,7 @@ public class Vcard_Management {
 		_vcard.set_mail(string);
 //		System.out.println(string);		
 	}
-	//Méthode qui permet d'extraire la date de dernière modification de la Vcard
-	private void extractLastModified(String string) {
-		//On enlève "REV:" de la ligne
-		string = string.replace("REV:", "");
-		_vcard.set_lastUpdated(string);
-//		System.out.println(string);
-	}
+
 	
 	//Methode qui permet de prendre l'adresse complète et de la split par rapport aux virgules (le séparateur utilisé dans l'attribut de la Vcard)
 	private String convertAdressToHTML(String adress) {

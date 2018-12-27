@@ -1,10 +1,11 @@
 package datas;
 
-public class Vcalendar {
+import java.io.Serializable;
+
+public class Vcalendar implements Serializable{
 	
+	private static final long serialVersionUID = 8303974458230502084L;
 	//VCALENDAR DE TYPE VEVENT SEULEMENT ?
-												//La version du calendar
-	private String								_version;
 												//La date de début du Vevent
 	private String								_dateBegin;
 												//La datte de fin du Vevent
@@ -28,12 +29,6 @@ public class Vcalendar {
 	}
 	
 	/*GETTERS*/
-	/**
-	 * @return The version of the Vcalendar
-	 */
-	public String get_version() {
-		return _version;
-	}
 	/**
 	 * @return The time at which the Event starts.
 	 */
@@ -79,12 +74,7 @@ public class Vcalendar {
 	/*FIN GETTERS*/
 	
 	/*SETTERS*/
-	/**
-	 * @param _version Set the version of the Vcalendar.
-	 */
-	public void set_version(String _version) {
-		this._version = _version;
-	}
+
 	/**
 	 * @param _dateBegin Set the time at which the Event starts.
 	 */
@@ -134,7 +124,6 @@ public class Vcalendar {
 	/*TOSTRING*/
 	public String toString() {
 		String 									string = "";
-		if(_version != null) 					string+= "Version:	"+get_version()+"\n";
 		if(_dateBegin != null)					string+= "Date de Debut	"+get_dateBegin()+"\n";
 		if(_dateEnd != null)					string+= "Date de Fin	"+get_dateEnd()+"\n";
 		if(_summary != null)					string+= "Résumé		"+get_summary()+"\n";

@@ -13,6 +13,7 @@ import java.io.ObjectOutputStream;
 import datas.*;
 import exceptions.BadArgumentException;
 import exceptions.NoArgumentException;
+import gui.Settings;
 
 public class Vcalendar_Management {
 
@@ -32,13 +33,14 @@ public class Vcalendar_Management {
 	 * @param fileName The name of the file from which we extract datas to convert in Vcalendar
 	 */
 	public Vcalendar_Management(String fileName) {
-		_vcalendar = new Vcalendar();
-		analyzeFile(fileName);
-		try {
-			serializeVcalendar("truc.ser");
-		} catch (NoArgumentException | BadArgumentException e) {
-			e.printStackTrace();
+		//Si on lit un fichier sérialisé, on le désérialise
+		if(fileName.endsWith(".ser")) readSerializedVcalendar(fileName);
+		else {
+			//Sinon on le traite comme un fichier classique
+			_vcalendar = new Vcalendar();
+			analyzeFile(fileName);
 		}
+		Settings.setVcalendarNameMap();
 	}
 	/**
 	 * 
@@ -179,9 +181,6 @@ public class Vcalendar_Management {
 				// On lit le fichier ligne par ligne pour traiter chaque informations
 				String calendarLine = calendarReader.readLine();
 				while (calendarLine != null) {
-					// On extrait la version du calendar
-					if (calendarLine.startsWith("VERSION"))
-						extractVersion(calendarLine);
 					// On extrait la date de début de l'event
 					if (calendarLine.startsWith("DTSTART"))
 						extractDateBegin(calendarLine);
@@ -213,14 +212,6 @@ public class Vcalendar_Management {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	// Méthode qui permet d'extraire la version du Vcalendar
-	private void extractVersion(String string) {
-		// On enlève "VERSION:" de la ligne
-		string = string.replace("VERSION:", "");
-		// On set la version
-		_vcalendar.set_version(string);
 	}
 
 	// Méthode qui permet d'extraire la date de début de l'event
